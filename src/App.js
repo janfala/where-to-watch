@@ -1,9 +1,7 @@
-import Search from "./Search";
-
-const KEY = process.env.REACT_APP_KEY;
+import Searchbar from "./Searchbar";
 
 function App() {
-  return <Search />;
+  return <Searchbar />;
 }
 
 export default App;
