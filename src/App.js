@@ -1,9 +1,9 @@
-import "./App.css";
+import Search from "./Search";
 
-console.log(process.env.REACT_APP_KEY);
+const KEY = process.env.REACT_APP_KEY;
 
 function App() {
-  return <div>hello</div>;
+  return <Search />;
 }
 
 export default App;
