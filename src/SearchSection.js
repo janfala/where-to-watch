@@ -1,24 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import SearchResult from "./SearchResult";
 
-const Searchbar = () => {
+const SearchSection = () => {
   const API_KEY = process.env.REACT_APP_KEY;
-  let url = "";
+  const [url, setUrl] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
     let input = e.target.elements["title"].value;
     //  url = "https://api.watchmode.com/v1/autocomplete-search/?apiKey=${API_KEY}&search_value=${input}&search_type=2`";
-    url = "http://localhost:8000/movies";
+    setUrl("http://localhost:8000/movies");
   };
 
   return (
     <div>
       <form className="content" onSubmit={handleSearch}>
         <input type="text" name="title" placeholder="A new Hope.." required />
-        <button type="submit">Search</button>
+        <button>Search</button>
       </form>
+      {url && <SearchResult url={url} />}
     </div>
   );
 };
 
-export default Searchbar;
+export default SearchSection;

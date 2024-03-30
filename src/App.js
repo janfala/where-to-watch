@@ -1,4 +1,4 @@
-import Searchbar from "./Searchbar";
+import SearchSection from "./SearchSection";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
         <p className="info-text">Find out where you can watch your favourite title by searching for it down below</p>
       </div>
       <h2>Search</h2>
-      <Searchbar />;
+      <SearchSection />
     </div>
   );
 }
