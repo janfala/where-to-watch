@@ -37,10 +37,6 @@ h2 {
   cursor: pointer;
 }
 
-.info-text {
-  text-align: center;
-}
-
 .results {
   display: flex;
   flex-wrap: wrap;
@@ -88,4 +84,22 @@ h2 {
   background-color: rgb(104, 69, 69);
   color: white;
   transform: rotateY(180deg);
+}
+
+.card-back h3 {
+  text-align: center;
+}
+
+.card-back button {
+  cursor: pointer;
+}
+
+.blank-picture {
+  padding-top: 2rem;
+}
+
+.dialog {
+  width: 50%;
+  height: 50%;
+  overflow-y: auto;
 }
