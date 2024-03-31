@@ -11,7 +11,7 @@ const InfoDialog = ({ info, provider }) => {
           {info.genre_names.length > 0 && (
             <>
               <h4>Genres</h4>
-              <div className="genres">
+              <div className="genres" key={key++}>
                 {info.genre_names.map((genre) => (
                   <p>{genre}</p>
                 ))}
