@@ -29,7 +29,7 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
             <div className="info-trailer">
               <h4>Trailer</h4>
               <a href={info.trailer} target="_blank">
-                click here to watch trailer
+                click here to watch
               </a>
             </div>
           )}

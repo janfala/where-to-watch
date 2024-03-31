@@ -119,12 +119,13 @@ h2 {
   margin-bottom: 2rem;
   width: 10rem;
   height: 3rem;
+  margin-top: 0.5rem;
 }
 
 .info-title {
   margin-bottom: 3rem;
   text-align: center;
-  font-size: larger;
+  font-size: 3rem;
 }
 
 .info h4:not(.info-title) {
@@ -172,9 +173,11 @@ h2 {
   margin-top: 2rem;
   display: flex;
   overflow-x: auto;
+  border-bottom: solid;
 }
 
 .source {
+  padding-right: 1rem;
   margin-right: 2rem;
   margin-bottom: 3rem;
   max-width: 200px;
