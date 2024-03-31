@@ -32,7 +32,7 @@ const SearchResult = ({ url, apiKey }) => {
           setInfo(data);
           setProvider(data.sources);
         } else {
-          setTitles(removeDuplicates(data));
+          setTitles(removeDuplicates(data, false));
         }
         setError(false);
       })
@@ -42,18 +42,22 @@ const SearchResult = ({ url, apiKey }) => {
       });
   }
 
-  function removeDuplicates(array) {
-    const uniqueNames = new Set();
-    const uniqueMovies = [];
-    array.results.forEach((movie) => {
-      const name = movie.name;
-      if (!uniqueNames.has(name)) {
-        uniqueNames.add(name);
-        uniqueMovies.push(movie);
+  function removeDuplicates(array, isDetail) {
+    const uniqueValues = new Set();
+    const uniqueElements = [];
+
+    if (!isDetail) {
+      array = array.results;
+    }
+    array.forEach((element) => {
+      const value = element.name;
+      if (!uniqueValues.has(value)) {
+        uniqueValues.add(value);
+        uniqueElements.push(element);
       }
     });
 
-    return uniqueMovies;
+    return uniqueElements;
   }
 
   return (
@@ -92,7 +96,7 @@ const SearchResult = ({ url, apiKey }) => {
       {clickedInfo && (
         <dialog open className="dialog">
           <form>
-            {info && provider && <InfoDialog info={info} provider={provider} />}
+            {info && provider && <InfoDialog info={info} provider={provider} removeDuplicates={removeDuplicates} />}
             <button
               onClick={() => {
                 setClickedInfo(false);
