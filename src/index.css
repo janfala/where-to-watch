@@ -53,6 +53,11 @@ h2 {
   border: 1px solid #4e4747;
 }
 
+.movie-card img {
+  height: 100%;
+  width: 100%;
+}
+
 .card-inner {
   position: relative;
   width: 100%;

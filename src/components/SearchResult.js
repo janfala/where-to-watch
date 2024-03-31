@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import InfoDialog from "./InfoDialog";
 
-const SearchResult = ({ url }) => {
+const SearchResult = ({ url, apiKey }) => {
   const [titles, setTitles] = useState(null);
   const [error, setError] = useState(false);
   const [clickedInfo, setClickedInfo] = useState(false);
@@ -19,7 +19,7 @@ const SearchResult = ({ url }) => {
       .then((data) => {
         const uniqueNames = new Set();
         const uniqueMovies = [];
-        data.forEach((movie) => {
+        data.results.forEach((movie) => {
           const name = movie.name;
           if (!uniqueNames.has(name)) {
             uniqueNames.add(name);
@@ -37,7 +37,8 @@ const SearchResult = ({ url }) => {
   }, [url]);
 
   const handleDetails = (id) => {
-    url = "http://localhost:8000/details";
+    url = `https://api.watchmode.com/v1/title/${id}/details/?apiKey=${apiKey}&append_to_response=sources`;
+    //url = "http://localhost:8000/details" + id;
     setClickedInfo(true);
 
     fetch(url)
@@ -48,8 +49,9 @@ const SearchResult = ({ url }) => {
         return res.json();
       })
       .then((data) => {
-        setInfo(data[0]); // only has 1 hit so this should be fine
-        setProvider(data[0].sources);
+        console.log(data);
+        setInfo(data);
+        setProvider(data.sources);
         setError(false);
       })
       .catch((err) => {

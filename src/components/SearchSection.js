@@ -8,8 +8,8 @@ const SearchSection = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     let input = e.target.elements["title"].value;
-    //  url = "https://api.watchmode.com/v1/autocomplete-search/?apiKey=${API_KEY}&search_value=${input}&search_type=2`";
-    setUrl("http://localhost:8000/movies");
+    setUrl(`https://api.watchmode.com/v1/autocomplete-search/?apiKey=${API_KEY}&search_value=${input}&search_type=2`);
+    //setUrl("http://localhost:8000/movies");
   };
 
   return (
@@ -18,7 +18,7 @@ const SearchSection = () => {
         <input type="text" name="title" placeholder="A new Hope.." required />
         <button>Search</button>
       </form>
-      {url && <SearchResult url={url} />}
+      {url && <SearchResult url={url} apiKey={API_KEY} />}
     </div>
   );
 };
