@@ -40,8 +40,7 @@ h2 {
 .results {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
+  justify-content: left;
   margin: 2rem 20px 0 80px;
 }
 
@@ -181,7 +180,7 @@ h2 {
   margin-right: 2rem;
   margin-bottom: 3rem;
   max-width: 200px;
-  background-color: rgb(196, 177, 155);
+  background-color: rgb(211, 191, 169);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
@@ -206,4 +205,13 @@ h2 {
   margin: 1.6rem 0 1.5rem;
   text-decoration: none;
   color: rgb(121, 109, 90);
+}
+
+.blank-picture {
+  padding: 1.5rem 1rem 0 1rem;
+}
+
+.blank-poster {
+  margin-top: 5rem;
+  text-align: center;
 }

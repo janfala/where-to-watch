@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import InfoDialog from "./InfoDialog";
 
-const SearchResult = ({ url, apiKey }) => {
+const SearchResult = ({ url, apiKey, notifyQuotaUpdate }) => {
   const [titles, setTitles] = useState(null);
   const [error, setError] = useState(false);
   const [clickedInfo, setClickedInfo] = useState(false);
@@ -34,6 +34,7 @@ const SearchResult = ({ url, apiKey }) => {
         } else {
           setTitles(removeDuplicates(data, false));
         }
+        notifyQuotaUpdate();
         setError(false);
       })
       .catch((err) => {
@@ -70,7 +71,10 @@ const SearchResult = ({ url, apiKey }) => {
                 {!/blank\.gif/.test(title.image_url) ? (
                   <img src={title.image_url} alt="" />
                 ) : (
-                  <div className="blank-picture">{title.name}</div>
+                  <div className="blank-picture">
+                    {title.name}
+                    <p className="blank-poster">(no poster)</p>
+                  </div>
                 )}
               </div>
               <div className="card-back">
@@ -96,7 +100,14 @@ const SearchResult = ({ url, apiKey }) => {
       {clickedInfo && (
         <dialog open className="dialog">
           <form>
-            {info && provider && <InfoDialog info={info} provider={provider} removeDuplicates={removeDuplicates} />}
+            {info && provider && (
+              <InfoDialog
+                info={info}
+                provider={provider}
+                removeDuplicates={removeDuplicates}
+                notifyQuotaUpdate={notifyQuotaUpdate}
+              />
+            )}
             <button
               onClick={() => {
                 setClickedInfo(false);
