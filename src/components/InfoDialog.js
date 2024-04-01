@@ -25,10 +25,10 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
               </section>
             </>
           )}
-          {provider.trailer && (
+          {info.trailer && (
             <section className="info-trailer">
               <h4>Trailer</h4>
-              <a href={info.trailer} target="_blank">
+              <a href={info.trailer} target="_blank" rel="noreferrer">
                 Click here to watch
               </a>
             </section>
@@ -49,7 +49,7 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
                           <li>Seasons: {prov.seasons}</li>
                           <li>Region: {prov.region}</li>
                         </ul>
-                        <a href={prov.web_url} target="_blank">
+                        <a href={prov.web_url} target="_blank" rel="noreferrer">
                           Go to website
                         </a>
                       </div>

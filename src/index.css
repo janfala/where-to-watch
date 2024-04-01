@@ -31,6 +31,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
@@ -129,8 +133,15 @@ button {
 .results {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
   margin: 3.3rem 20px 0 2rem;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-left {
+  justify-content: left;
 }
 
 .movie-card {
@@ -354,4 +365,10 @@ button {
   background-color: #eeefee;
   margin: 1.5rem 1rem 0 1rem;
   padding-bottom: 0.4rem;
+}
+
+.error {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 3rem;
 }

@@ -16,7 +16,7 @@ const SearchSection = ({ notifyQuotaUpdate }) => {
     <>
       <section className="searchbar">
         <form onSubmit={handleSearch}>
-          <input type="text" name="title" placeholder="A new Hope.." required />
+          <input type="text" name="title" placeholder="Star wars.." required />
           <button>Search</button>
         </form>
       </section>

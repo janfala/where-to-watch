@@ -9,7 +9,10 @@ const SearchResult = ({ url, apiKey, notifyQuotaUpdate }) => {
   const [provider, setProvider] = useState(null);
 
   useEffect(() => {
-    getData(url, false);
+    console.log("fired again");
+    if (url) {
+      getData(url, false);
+    }
   }, [url]);
 
   const handleDetails = (id) => {
@@ -62,64 +65,70 @@ const SearchResult = ({ url, apiKey, notifyQuotaUpdate }) => {
   }
 
   return (
-    <section className="results">
-      {titles &&
-        titles.map((title) => (
-          <section className="movie-card" key={title.id}>
-            <div className="card-inner">
-              <section className="card-front">
-                {!/blank\.gif/.test(title.image_url) ? (
-                  <img src={title.image_url} alt="" />
-                ) : (
-                  <p className="blank-poster-text">{title.name}</p>
-                )}
-              </section>
-              <section className="card-back">
-                <div className="card-back-text">
-                  <h3>{title.name}</h3>
-                  <ul>
-                    {title.type && <li>{title.type}</li>}
-                    <li>{title.year ? title.year : "-"}</li>
-                  </ul>
+    <>
+      {!error ? (
+        <section className={titles && titles.length <= 2 ? "results justify-center" : "results justify-left"}>
+          {titles &&
+            titles.map((title) => (
+              <section className="movie-card" key={title.id}>
+                <div className="card-inner">
+                  <section className="card-front">
+                    {!/blank\.gif/.test(title.image_url) ? (
+                      <img src={title.image_url} alt="" />
+                    ) : (
+                      <p className="blank-poster-text">{title.name}</p>
+                    )}
+                  </section>
+                  <section className="card-back">
+                    <div className="card-back-text">
+                      <h3>{title.name}</h3>
+                      <ul>
+                        {title.type && <li>{title.type}</li>}
+                        <li>{title.year ? title.year : "-"}</li>
+                      </ul>
+                    </div>
+                    {!clickedInfo && (
+                      <button className="detail-btn" onClick={() => handleDetails(title.id)}>
+                        Show Info
+                      </button>
+                    )}
+                    {clickedInfo && (
+                      <button className="detail-btn" onClick={() => handleDetails(title.id)} disabled>
+                        Show Info
+                      </button>
+                    )}
+                  </section>
                 </div>
-                {!clickedInfo && (
-                  <button className="detail-btn" onClick={() => handleDetails(title.id)}>
-                    Show Info
-                  </button>
-                )}
-                {clickedInfo && (
-                  <button className="detail-btn" onClick={() => handleDetails(title.id)} disabled>
-                    Show Info
-                  </button>
-                )}
               </section>
-            </div>
-          </section>
-        ))}
-      {clickedInfo && (
-        <section className="dialog-overlay">
-          <dialog open className="dialog">
-            <form>
-              {info && provider && (
-                <InfoDialog
-                  info={info}
-                  provider={provider}
-                  removeDuplicates={removeDuplicates}
-                  notifyQuotaUpdate={notifyQuotaUpdate}
-                />
-              )}
-              <button
-                onClick={() => {
-                  setClickedInfo(false);
-                }}
-              >
-                close info
-              </button>
-            </form>
-          </dialog>
+            ))}
+          {clickedInfo && (
+            <section className="dialog-overlay">
+              <dialog open className="dialog">
+                <form>
+                  {info && provider && (
+                    <InfoDialog
+                      info={info}
+                      provider={provider}
+                      removeDuplicates={removeDuplicates}
+                      notifyQuotaUpdate={notifyQuotaUpdate}
+                    />
+                  )}
+                  <button
+                    onClick={() => {
+                      setClickedInfo(false);
+                    }}
+                  >
+                    Close
+                  </button>
+                </form>
+              </dialog>
+            </section>
+          )}
         </section>
+      ) : (
+        <p className="text error">An error occured, please try again</p>
       )}
-    </section>
+    </>
   );
 };
 
