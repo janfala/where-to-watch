@@ -9,16 +9,21 @@ function App() {
     setQuotaUpdate((prevState) => !prevState);
   };
   return (
-    <div>
+    <>
       <h1>Where To Watch</h1>
-      <div>
-        <h2>How to use</h2>
-        <p className="info-text">Find out where you can watch your favourite title by searching for it down below</p>
-      </div>
-      <APIInfo isQuotaUpdate={quotaUpdate} />
-      <h2>Search</h2>
-      <SearchSection notifyQuotaUpdate={notifyQuotaUpdate} />
-    </div>
+      <section className="mainframe">
+        <section className="how-to">
+          <h2>How to use</h2>
+          <p className="text">
+            Find out where you can watch your favourite title by searching for it. Just type in the name of any movie or
+            show and click on search.
+          </p>
+        </section>
+        <APIInfo isQuotaUpdate={quotaUpdate} />
+        <h2 className="search-h">Search</h2>
+        <SearchSection notifyQuotaUpdate={notifyQuotaUpdate} />
+      </section>
+    </>
   );
 }
 

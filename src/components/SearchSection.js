@@ -8,18 +8,20 @@ const SearchSection = ({ notifyQuotaUpdate }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     let input = e.target.elements["title"].value;
-    // setUrl(`https://api.watchmode.com/v1/autocomplete-search/?apiKey=${API_KEY}&search_value=${input}&search_type=2`);
-    setUrl("http://localhost:8000/movies");
+    setUrl(`https://api.watchmode.com/v1/autocomplete-search/?apiKey=${API_KEY}&search_value=${input}&search_type=2`);
+    // setUrl("http://localhost:8000/movies");
   };
 
   return (
-    <div>
-      <form className="content" onSubmit={handleSearch}>
-        <input type="text" name="title" placeholder="A new Hope.." required />
-        <button>Search</button>
-      </form>
+    <>
+      <section className="searchbar">
+        <form onSubmit={handleSearch}>
+          <input type="text" name="title" placeholder="A new Hope.." required />
+          <button>Search</button>
+        </form>
+      </section>
       {url && <SearchResult url={url} apiKey={API_KEY} notifyQuotaUpdate={notifyQuotaUpdate} />}
-    </div>
+    </>
   );
 };
 

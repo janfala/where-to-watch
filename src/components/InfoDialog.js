@@ -3,41 +3,41 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
   const currYear = new Date().getFullYear();
 
   return (
-    <div className="info">
+    <section className="info">
       <h4 className="info-title">{info.title}</h4>
       {currYear > info.year ? (
         <>
           {info.plot_overview && (
-            <div className="info-description">
+            <section className="info-description">
               <h4>Description</h4>
               <p>{info.plot_overview}</p>
-            </div>
+            </section>
           )}
           {info.genre_names.length > 0 && (
             <>
               <h4>Genres</h4>
-              <div className="info-genres">
+              <section className="info-genres">
                 {info.genre_names.map((genre) => (
                   <p className="genre-name" key={key++}>
                     {genre}
                   </p>
                 ))}
-              </div>
+              </section>
             </>
           )}
-          {provider.trailer !== null && (
-            <div className="info-trailer">
+          {provider.trailer && (
+            <section className="info-trailer">
               <h4>Trailer</h4>
               <a href={info.trailer} target="_blank">
-                click here to watch
+                Click here to watch
               </a>
-            </div>
+            </section>
           )}
           <div>
             {provider.length > 0 && (
               <>
-                <h4>Where to watch?</h4>
-                <div className="info-sources">
+                <h4 className="where-to-watch">Where to watch?</h4>
+                <section className="info-sources">
                   {
                     (provider = removeDuplicates(provider, true).map((prov) => (
                       <div className="source" key={key++}>
@@ -50,12 +50,12 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
                           <li>Region: {prov.region}</li>
                         </ul>
                         <a href={prov.web_url} target="_blank">
-                          Go To Website
+                          Go to website
                         </a>
                       </div>
                     )))
                   }
-                </div>
+                </section>
               </>
             )}
           </div>
@@ -65,7 +65,7 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
           <p>set to release in: {info.year}</p>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

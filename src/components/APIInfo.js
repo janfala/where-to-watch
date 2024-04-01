@@ -26,12 +26,15 @@ const APIInfo = ({ isQuotaUpdate }) => {
   return (
     <div>
       <h2>API</h2>
-      <p>
-        This website uses the watchmode API.
-        <br /> Find out more about watchmode:
-      </p>
-      <a href="https://api.watchmode.com">check out watchmode</a>
-      <p>Requests left for current month: {requestsLeft}</p>
+      <div>
+        <p className="text upper-p">
+          Requests left for current month: <span className="requests">{requestsLeft}</span>
+        </p>
+        <p className="text lower-p">This website uses the watchmode API. Find out more about watchmode:</p>
+        <a className="watchmode" href="https://api.watchmode.com">
+          check out watchmode
+        </a>
+      </div>
     </div>
   );
 };

@@ -13,8 +13,8 @@ const SearchResult = ({ url, apiKey, notifyQuotaUpdate }) => {
   }, [url]);
 
   const handleDetails = (id) => {
-    //url = `https://api.watchmode.com/v1/title/${id}/details/?apiKey=${apiKey}&append_to_response=sources`;
-    url = "http://localhost:8000/details";
+    url = `https://api.watchmode.com/v1/title/${id}/details/?apiKey=${apiKey}&append_to_response=sources`;
+    // url = "http://localhost:8000/details";
     setClickedInfo(true);
     getData(url, true);
   };
@@ -62,27 +62,26 @@ const SearchResult = ({ url, apiKey, notifyQuotaUpdate }) => {
   }
 
   return (
-    <div className="results">
+    <section className="results">
       {titles &&
         titles.map((title) => (
-          <div className="movie-card" key={title.id}>
+          <section className="movie-card" key={title.id}>
             <div className="card-inner">
-              <div className="card-front">
+              <section className="card-front">
                 {!/blank\.gif/.test(title.image_url) ? (
                   <img src={title.image_url} alt="" />
                 ) : (
-                  <div className="blank-picture">
-                    {title.name}
-                    <p className="blank-poster">(no poster)</p>
-                  </div>
+                  <p className="blank-poster-text">{title.name}</p>
                 )}
-              </div>
-              <div className="card-back">
-                <h3>{title.name}</h3>
-                <ul>
-                  <li>{title.type}</li>
-                  <li>{title.year}</li>
-                </ul>
+              </section>
+              <section className="card-back">
+                <div className="card-back-text">
+                  <h3>{title.name}</h3>
+                  <ul>
+                    {title.type && <li>{title.type}</li>}
+                    <li>{title.year ? title.year : "-"}</li>
+                  </ul>
+                </div>
                 {!clickedInfo && (
                   <button className="detail-btn" onClick={() => handleDetails(title.id)}>
                     Show Info
@@ -93,32 +92,34 @@ const SearchResult = ({ url, apiKey, notifyQuotaUpdate }) => {
                     Show Info
                   </button>
                 )}
-              </div>
+              </section>
             </div>
-          </div>
+          </section>
         ))}
       {clickedInfo && (
-        <dialog open className="dialog">
-          <form>
-            {info && provider && (
-              <InfoDialog
-                info={info}
-                provider={provider}
-                removeDuplicates={removeDuplicates}
-                notifyQuotaUpdate={notifyQuotaUpdate}
-              />
-            )}
-            <button
-              onClick={() => {
-                setClickedInfo(false);
-              }}
-            >
-              close info
-            </button>
-          </form>
-        </dialog>
+        <section className="dialog-overlay">
+          <dialog open className="dialog">
+            <form>
+              {info && provider && (
+                <InfoDialog
+                  info={info}
+                  provider={provider}
+                  removeDuplicates={removeDuplicates}
+                  notifyQuotaUpdate={notifyQuotaUpdate}
+                />
+              )}
+              <button
+                onClick={() => {
+                  setClickedInfo(false);
+                }}
+              >
+                close info
+              </button>
+            </form>
+          </dialog>
+        </section>
       )}
-    </div>
+    </section>
   );
 };
 
