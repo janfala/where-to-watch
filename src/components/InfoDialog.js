@@ -5,7 +5,7 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
   return (
     <section className="info">
       <h4 className="info-title">{info.title}</h4>
-      {currYear > info.year ? (
+      {info && currYear > info.year ? (
         <>
           {info.plot_overview && (
             <section className="info-description">
@@ -13,7 +13,7 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
               <p>{info.plot_overview}</p>
             </section>
           )}
-          {info.genre_names.length > 0 && (
+          {info.genre_names && info.genre_names.length > 0 && (
             <>
               <h4>Genres</h4>
               <section className="info-genres">
@@ -34,7 +34,7 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
             </section>
           )}
           <div>
-            {provider.length > 0 && (
+            {provider && provider.length > 0 && (
               <>
                 <h4 className="where-to-watch">Where to watch?</h4>
                 <section className="info-sources">
@@ -62,7 +62,8 @@ const InfoDialog = ({ info, provider, removeDuplicates }) => {
         </>
       ) : (
         <div>
-          <p>set to release in: {info.year}</p>
+          <h4>Not out yet!</h4>
+          <p>set to release in {info.year}</p>
         </div>
       )}
     </section>
