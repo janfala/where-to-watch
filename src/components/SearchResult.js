@@ -9,7 +9,6 @@ const SearchResult = ({ url, apiKey, notifyQuotaUpdate }) => {
   const [provider, setProvider] = useState(null);
 
   useEffect(() => {
-    console.log("fired again");
     if (url) {
       getData(url, false);
     }
